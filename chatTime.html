@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+	<script type="text/javascript" src="js\jquery-2.1.4.js"></script>
+	<script type="text/javascript">
+		var jq=jQuery.noConflict();
+	</script>
+
+	<style type="text/css">
+	</style>
+	
+</head>
+<body>
+
+
+
+
+	<script type="text/javascript">
+
+		function chatTime(time,now){
+			var dateTime=new Date(time);
+			var dateNow=new Date(now);
+			if(now-time<86400000&&dateTime.getDate()==dateNow.getDate()){//当天 24*60*60*1000
+				return dateTime.toTimeString().split(' ')[0].substring(0,5);
+			}
+			else if(now-time<172800000&&dateTime.getDate()==dateNow.getDate()-1){//昨天 2*24*60*60*1000
+				return '昨天';
+			}
+			else if(now-time<604800000){//小于一周 7*24*60*60*1000
+				var day=dateTime.getDay();
+				var dayStr;
+				switch(day){
+					case 0:
+						dayStr='天';
+						break;
+					case 1:
+						dayStr='一';
+						break;
+					case 2:
+						dayStr='二';
+						break;
+					case 3:
+						dayStr='三';
+						break;
+					case 4:
+						dayStr='四';
+						break;
+					case 5:
+						dayStr='五';
+						break;
+					case 6:
+						dayStr='六';
+						break;
+				}
+				return '星期'+dayStr;
+			}
+			else{
+				return dateTime.getFullYear().toString().substring(2)+'/'+(dateTime.getMonth()+1)+'/'+dateTime.getDate();
+			}
+		}
+
+
+	</script>
+
+</body>
+
+
+</html>
